@@ -6,7 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 from selenium.common.exceptions import TimeoutException
-
+import chromedriver_autoinstaller
 from flask import Flask
 from waitress import serve
 import threading  # To run the Selenium script in a separate thread
@@ -24,7 +24,8 @@ def run_selenium_script():
     chrome_options.add_argument('--disable-notifications')  # Disable pop-up notifications
 
     # Provide the path to your ChromeDriver
-    driver_path = 'C:/project1/chromedriver.exe'  # Update with your driver path
+    #driver_path = 'C:/project1/chromedriver.exe'  # Update with your driver path
+    driver_path = chromedriver_autoinstaller.install()
     service = Service(driver_path)
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
