@@ -9,7 +9,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from flask import Flask
 from waitress import serve
-import chromedriver_autoinstaller
+# import chromedriver_autoinstaller
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -21,7 +21,7 @@ logging.basicConfig(level=logging.DEBUG)
 def run_selenium_script():
     try:
         # Install chromedriver automatically
-        chromedriver_autoinstaller.install()
+        # chromedriver_autoinstaller.install()
 
         # Set up Chrome options
         chrome_options = Options()
