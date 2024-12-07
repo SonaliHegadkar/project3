@@ -1,15 +1,14 @@
 import threading
 import time
+import logging
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
 from flask import Flask
 from waitress import serve
-import logging
 import chromedriver_autoinstaller
 
 # Initialize Flask app
@@ -130,10 +129,12 @@ def run_selenium_script():
 def home():
     return "Hello, world!"
 
-# Run Flask app in a separate thread for production
-if __name__ == "__main__":
-    # Running the Selenium script in a separate thread
+# Ensure the Selenium script runs once before the first request
+@app.before_first_request
+def before_first_request():
     threading.Thread(target=run_selenium_script).start()
 
+# Run Flask app in the main thread
+if __name__ == "__main__":
     # Use Waitress to serve the app
     serve(app, host='0.0.0.0', port=8080)
