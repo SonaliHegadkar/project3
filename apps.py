@@ -14,8 +14,8 @@ import threading  # To run the Selenium script in a separate thread
 app = Flask(__name__)
 
 @app.route('/')
-def home():
-    return "Hello, world!"
+# def home():
+    # return "Hello, world!"
 
 def run_selenium_script():
     # Set up the Chrome WebDriver with options
