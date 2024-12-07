@@ -129,12 +129,10 @@ def run_selenium_script():
 def home():
     return "Hello, world!"
 
-# Ensure the Selenium script runs once before the first request
-@app.before_first_request
-def before_first_request():
+# Start the Selenium script in a separate thread before Flask starts
+if __name__ == "__main__":
+    # Start Selenium script in a separate thread
     threading.Thread(target=run_selenium_script).start()
 
-# Run Flask app in the main thread
-if __name__ == "__main__":
     # Use Waitress to serve the app
     serve(app, host='0.0.0.0', port=8080)
